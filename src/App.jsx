@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Navbar from './layouts/Navbar';
+import Navbar from './components/Navbar';
 import SearchBar from './components/SearchBar';
 import UsersList from './components/Users/UsersList';
+import ALert from './components/Alert';
 import './App.css';
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     this.state = {
       users: [],
       isLoading: false,
+      alert: null,
     };
   }
 
@@ -23,6 +25,14 @@ class App extends Component {
     this.setState({ users: result.data.items, isLoading: false });
   };
 
+  clearUsers = () => this.setState({ users: [] });
+
+  setAlert = (message, type) => {
+    this.setState({ alert: { message, type } });
+
+    setTimeout(() => this.setState({ alert: null }), 2000);
+  };
+
   render() {
     const { users, isLoading } = this.state;
 
@@ -30,7 +40,13 @@ class App extends Component {
       <div className="App">
         <Navbar title="Github Finder" icon="fab fa-github" />
         <div className="container">
-          <SearchBar searchUsers={this.searchUsers} />
+          <ALert alert={this.state.alert} />
+          <SearchBar
+            searchUsers={this.searchUsers}
+            clearUsers={this.clearUsers}
+            showClearBtn={this.state.users.length > 0}
+            setAlert={this.setAlert}
+          />
           <UsersList isLoading={isLoading} users={users} />
         </div>
       </div>
