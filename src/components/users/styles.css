@@ -3,7 +3,18 @@
 }
 
 .grid-users-list {
+  height: 680px;
+  overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
+  padding: 1rem;
+}
+
+.grid-users-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.grid-users-list::-webkit-scrollbar-thumb {
+  background: black;
 }

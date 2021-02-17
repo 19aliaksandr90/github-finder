@@ -29,6 +29,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
+  parser: 'babel-eslint',
   rules: {
     'padding-line-between-statements': ['warn', { blankLine: 'always', prev: '*', next: 'return' }],
     'arrow-body-style': 'warn',
@@ -36,6 +37,7 @@ module.exports = {
     'react/state-in-constructor': 'off',
     'react/require-default-props': 'off',
     'react/no-unused-state': 'off',
+    'react/destructuring-assignment': ['off'],
     'linebreak-style': 'off',
     'prettier/prettier': ['error'],
     'react/prefer-stateless-function': ['off'],

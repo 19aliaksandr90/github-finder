@@ -9,15 +9,29 @@ class UsersList extends Component {
     const { users, isLoading } = this.props;
 
     return (
-      <div className="grid-users-list">
-        {isLoading ? <Spinner /> : users.map((user) => <UserItem key={user.id} user={user} />)}
-      </div>
+      <>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <div className="grid-users-list">
+            {users.map((user) => (
+              <UserItem key={user.id} user={user} />
+            ))}
+          </div>
+        )}
+      </>
     );
   }
 }
 
 UsersList.propTypes = {
-  users: PropTypes.arrayOf,
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatar_url: PropTypes.string,
+      html_url: PropTypes.string,
+      login: PropTypes.string,
+    }),
+  ),
   isLoading: PropTypes.bool,
 };
 
